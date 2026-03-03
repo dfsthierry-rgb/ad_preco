@@ -6,35 +6,41 @@
     <title>Central Mesh - Tabela de Preços</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body { font-family: 'Inter', sans-serif; background: #f8fafc; }
+        .table-container { max-height: 80vh; overflow: auto; }
+        .table-modern th { background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%); color: white; position: sticky; top: 0; z-index: 10; }
+        .table-modern tbody tr:hover { background-color: rgba(30, 58, 95, 0.05); }
         .material-316 { background-color: rgba(139, 92, 246, 0.1); border-left: 3px solid #8b5cf6; }
         .material-304 { background-color: rgba(59, 130, 246, 0.1); border-left: 3px solid #3b82f6; }
         .material-302 { background-color: rgba(16, 185, 129, 0.1); border-left: 3px solid #10b981; }
         .material-galv { background-color: rgba(245, 158, 11, 0.1); border-left: 3px solid #f59e0b; }
         .material-carb { background-color: rgba(107, 114, 128, 0.1); border-left: 3px solid #6b7280; }
+        .material-other { background-color: rgba(236, 72, 153, 0.1); border-left: 3px solid #ec4899; }
         .filter-select { border: 2px solid #e2e8f0; padding: 8px; border-radius: 8px; }
         .filter-select:focus { border-color: #1e3a5f; }
+        @media print { .no-print { display: none !important; } }
     </style>
 </head>
-<body class="bg-gray-50 p-6">
+<body class="p-4">
     <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-6 pb-4 border-b-2 border-blue-900">
-            <h1 class="text-2xl font-bold text-blue-900">TABELA OFICIAL DE PREÇOS</h1>
-            <p class="text-lg text-slate-600">Central Mesh</p>
-            <p class="text-sm text-slate-400 mt-1">Publicado em: 03/03/2026 | Versão 7.01</p>
+        <div class="text-center mb-6 p-6 bg-gradient-to-r from-slate-800 to-slate-700 rounded-xl text-white">
+            <h1 class="text-2xl font-bold">TABELA DE PREÇOS</h1>
+            <p class="text-lg opacity-90">Central Mesh</p>
+            <p class="text-sm opacity-70 mt-2">Publicado em: 03/03/2026 | v7.01</p>
         </div>
         
-        <div class="bg-white rounded-xl p-4 mb-4 shadow flex flex-wrap gap-4 items-center">
+        <div class="bg-white rounded-xl p-4 mb-4 shadow no-print flex flex-wrap gap-4 items-center">
             <span class="text-sm font-bold text-slate-600">🔍 Filtrar:</span>
             <input type="text" id="filterCode" onkeyup="filterTable()" placeholder="Buscar código..." class="filter-select text-sm w-40">
             <select id="filterMat" onchange="filterTable()" class="filter-select text-sm"></select>
             <select id="filterMesh" onchange="filterTable()" class="filter-select text-sm"></select>
-            <button onclick="clearFilters()" class="text-sm text-blue-600">Limpar</button>
+            <button onclick="clearFilters()" class="text-sm text-blue-600 hover:text-blue-800">Limpar</button>
             <span id="count" class="ml-auto text-sm text-slate-500"></span>
         </div>
         
-        <div class="bg-white rounded-xl shadow overflow-hidden">
-            <table class="w-full text-sm table-modern" id="reportTable">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="table-container">
+                <table class="w-full text-sm table-modern" id="reportTable">
                         <thead>
                             <tr class="text-white text-xs">
                                 <th class="p-3 text-left">Código</th>
@@ -15195,10 +15201,11 @@ f.0,89mm</td>
                     <td class="p-2 border-b text-right col-ct">74,87</td>
                 </tr></tbody>
                     </table>
+            </div>
         </div>
         
         <div class="mt-6 text-center text-slate-400 text-sm">
-            <p>Central Mesh - Valores sujeitos a alteração sem aviso prévio</p>
+            <p>Central Mesh - Tabela de Preços | v7.01</p>
         </div>
     </div>
     
